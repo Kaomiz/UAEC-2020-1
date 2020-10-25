@@ -13,11 +13,12 @@ import static android.app.Activity.RESULT_OK;
 
 public class Camera {
 	static final int REQUEST_IMAGE_CAPTURE = 1;
+	private Bitmap image;
 
 	private void dispatchTakePictureIntent () {
 		Intent takePictureIntent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
 		try {
-			onActivityResult (REQUEST_IMAGE_CAPTURE, 1, takePictureIntent);
+			onActivityResult (REQUEST_IMAGE_CAPTURE, RESULT_OK, takePictureIntent);
 		} catch (ActivityNotFoundException e) {
 			// display error state to the user
 		}
@@ -26,9 +27,14 @@ public class Camera {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 			Bundle extras = data.getExtras();
-			Bitmap imageBitmap = (Bitmap) extras.get("data");
+			image = (Bitmap) extras.get("data");
 			ImageView imageView = new ImageView (null);
-			imageView.setImageBitmap(imageBitmap);
+			imageView.setImageBitmap(image);
 		}
+	}
+
+	public Bitmap GetImage () {
+		dispatchTakePictureIntent ();
+		return (image);
 	}
 }
