@@ -53,10 +53,6 @@ public class MainActivity extends AppCompatActivity {
 	//Take the emergency picture
 	public void testImage (View view) {
 		dispatchTakePictureIntent ();
-		while (image == null) {
-			System.out.println ("RE");
-		}
-		call ();
 		//email ();
 	}
 
@@ -104,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 			view1.setImageBitmap (image);
 			Pixel p = new Pixel ();
 			p.greyscale (image);
+			call ();
 		}
 	}
 }
