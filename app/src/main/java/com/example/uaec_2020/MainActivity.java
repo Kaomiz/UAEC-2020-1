@@ -16,6 +16,7 @@ import android.service.autofill.UserData;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -32,13 +33,18 @@ public class MainActivity extends AppCompatActivity {
 	static final int REQUEST_IMAGE_CAPTURE = 1;
 	ImageView view1;
 	Button create;
+	TextView num;
 	Bitmap image;
+	recognize_face face;
+	long alloc;
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate (savedInstanceState);
 		setContentView (R.layout.activity_main);
 		RequestPerms ();
+		alloc = face.alloc_nn ();
 		view1 = findViewById (R.id.imageView);
+		num = findViewById (R.id.textView2);
 		create = findViewById (R.id.button2);
 		create.setOnClickListener (new View.OnClickListener () {
 			@Override
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
 	private void call () {
 		Intent callIntent = new Intent (Intent.ACTION_CALL);
-		callIntent.setData (Uri.parse("tel:7806688580"));
+		callIntent.setData (Uri.parse("tel:7806048907"));
 		if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 			return;
 		}
@@ -99,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 			image = (Bitmap) extras.get ("data");
 			view1.setImageBitmap (image);
 			Pixel p = new Pixel ();
-			p.greyscale (image);
+			num.setText (String.valueOf (face.run_data (alloc,p.greyscale (image))));
 			call ();
 		}
 	}
