@@ -103,7 +103,6 @@ int main(int argc, char **argv)
 	// attempt to load the saved network
 	net_save = fopen(NET_SAVE, "r");
 	if(!net_save){
-		fclose(net_save);
 		// initialize a new network
 		// construct network
 		// number of layers,
