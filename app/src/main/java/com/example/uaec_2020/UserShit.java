@@ -1,8 +1,14 @@
 package com.example.uaec_2020;
 
 import org.json.*;
+import android.content.*;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,7 +20,7 @@ public class UserShit {
         public JSONObject createJSONObject(String first, String Last, String street, String city,
                                            String province, String pc, String phn, String hin,
                                            String healthConditions) throws JSONException{
-
+                //make new json object and set values
                 JSONObject user1 =  new JSONObject();
                 user1.put("first name", first);
                 user1.put("last name", Last);
@@ -30,9 +36,13 @@ public class UserShit {
         }
 
         //stores the JSONObject in a text file
-        public void storeJSONObject(JSONObject user1) throws IOException {
-                FileWriter writer = new FileWriter("user1.json");
+        public void storeJSONObject(JSONObject user1) throws IOException, JSONException {
+
+                //make new writer and write to json
+                FileWriter writer = new FileWriter("filename.json");
                 writer.write(user1.toString());
                 writer.close();
         }
+
+
 }
