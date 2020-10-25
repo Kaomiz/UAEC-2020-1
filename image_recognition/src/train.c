@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <assert.h>
 #include <limits.h>
+#include <time.h>
 
 #include "fann.h"
 
@@ -12,6 +13,8 @@
 #define TAIT_FACE "images.sam"
 #define ETHAN_FACE "images.sam"
 #define MICHAEL_FACE "images.sam"
+
+#define NET_SAVE "nn.shizzle"
 
 struct img_dat{
 	uint16_t num_examples;
@@ -45,6 +48,7 @@ int main()
 	float want_out[4];
 	int select;
 	int increment[4];
+	FILE *net_save;
 
 	input_images[0] = fopen(SAM_FACE, "r");
 	input_images[1] = fopen(TAIT_FACE, "r");
@@ -93,15 +97,12 @@ int main()
 				img_dat[i].data[b][a] = fgetc(input_images[i]) / UCHAR_MAX;
 	}
 
-	// data should be loaded now
-
 	// build network, this is the cool shit
 	nnp.num_in = img_dat[0].bytes_per_image;
 	nnp.num_out = 4;
 	nnp.num_hidden = 32;
 	nnp.num_lay = 3;
 	nnp.num_neu_p_lay = 16;
-	nnp.desired_error = 0.005;
 	nnp.max_epochs = 20000;
 	nnp.epochs_between_reports = 100;
 
@@ -111,16 +112,32 @@ int main()
 	fann_set_activation_function_hidden(net, FANN_SIGMOID_SYMMETRIC);
 	fann_set_activation_function_output(net, FANN_SIGMOID_SYMMETRIC);
 
+	// attempt to load the saved network
+	net_save = fopen(NET_SAVE, "r");
+	if(!net_save){
+		// initialize a new network
+
+	}else{
+		// load the saved network
+		net = fann_create_	
+	}
 
 	// initialize training trackers
-	// randomize this to choose which dataset to pull from
-	select = 0;
 	// this will keep track of which image to train on from a given dataset
 	for(i = 0; i < 4; ++i)
 		increment[i] = 0;
 
-	// prepare to load data into network
-	fann_train(net, img_dat[select].data[increment[i]], want_out);
+	// TRAINNNNN
+	for(i = 0; i < nnp.max_epochs; ++i){
+		srand(time(NULL));
+		select = rand() % 4;
+		fann_train(net, img_dat[select].data[increment[select]], want_out);
+		++increment[select];
+		if(increment[select] == img_dat[select].num_examples)
+			increment[select] = 0;
+	}
+
+	// save the network
 
 	return 0;
 }
