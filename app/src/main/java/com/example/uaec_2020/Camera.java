@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import static android.app.Activity.RESULT_OK;
 
 
-public class Camera {
+public class Camera extends Activity {
 	static final int REQUEST_IMAGE_CAPTURE = 1;
 	private Bitmap image;
 

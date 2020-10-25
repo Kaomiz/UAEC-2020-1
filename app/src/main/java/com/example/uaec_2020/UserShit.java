@@ -1,3 +1,5 @@
+package com.example.uaec_2020;
+
 import org.json.*;
 
 import java.io.File;
@@ -5,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class UserData {
+public class UserShit {
 
         //define a new user, set the values of arguments provided by the filled form, return as
         //a JSON object
