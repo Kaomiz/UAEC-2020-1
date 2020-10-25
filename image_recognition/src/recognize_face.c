@@ -7,9 +7,11 @@
 
 #include <fann.h>
 
+#include <jni.h>
+
 #define NET_SAVE "nn.shizzle"
 
-unsigned long int setup_env(){
+JNIEXPORT unsigned long int JNICALL setup_env(){
 	// call once to create an instance of the neural network in memory
 	struct fann *net;
 	int addr_of_net;
