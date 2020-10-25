@@ -30,26 +30,12 @@ public class MainActivity extends AppCompatActivity {
 		view1 = findViewById (R.id.imageView);
 	}
 
+	//Take the picture
 	public void testImage (View view) {
 		dispatchTakePictureIntent ();
-		//Camera c = new Camera ();
-		//Bitmap image = c.GetImage ();
-		//ImageView imageView = new ImageView (null);
-		//imageView.setImageBitmap (image);
-		/*UserShit user = new UserShit ();
-		JSONObject person = new JSONObject ();
-		try {
-			person = user.createJSONObject ("Sam", "Tait", "Yeety", "Yoink","yikes","T6A3C9","78069696969","42069","Death");
-		} catch (JSONException e) {
-			e.printStackTrace ();
-		}
-		try {
-			user.storeJSONObject (person);
-		} catch (IOException e) {
-			e.printStackTrace ();
-		}*/
 	}
 
+	//Run the intent for picture
 	private void dispatchTakePictureIntent () {
 		Intent takePictureIntent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
 		try {
@@ -59,12 +45,15 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
+	//Get the view picture up
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult (requestCode, resultCode, data);
 		if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 			Bundle extras = data.getExtras ();
 			Bitmap image = (Bitmap) extras.get ("data");
 			view1.setImageBitmap (image);
+			Pixel p = new Pixel ();
+			p.greyscale (image);
 		}
 	}
 }
