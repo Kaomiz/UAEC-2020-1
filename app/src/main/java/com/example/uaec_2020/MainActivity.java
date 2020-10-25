@@ -1,11 +1,15 @@
 package com.example.uaec_2020;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.service.autofill.UserData;
@@ -44,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
 	//Take the emergency picture
 	public void testImage (View view) {
 		dispatchTakePictureIntent ();
+		call ();
+		//email ();
+	}
+
+	private void call () {
+		Intent callIntent = new Intent (Intent.ACTION_CALL);
+		callIntent.setData (Uri.parse("tel:7806688580"));
+		if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+			return;
+		}
+		startActivity(callIntent);
 	}
 
 	//Run the intent for picture
