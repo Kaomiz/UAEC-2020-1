@@ -61,6 +61,15 @@ public class MainActivity extends AppCompatActivity {
 		startActivity(callIntent);
 	}
 
+	public void RequestPerms () {
+		String[] perms = {Manifest.permission.CALL_PHONE};
+		//if () {
+
+		//} else {
+
+		//}
+	}
+
 	//Run the intent for picture
 	private void dispatchTakePictureIntent () {
 		Intent takePictureIntent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
