@@ -39,7 +39,7 @@ public class UserShit {
         public void storeJSONObject(JSONObject user1) throws IOException, JSONException {
 
                 //make new writer and write to json
-                FileWriter writer = new FileWriter("filename.json");
+                FileWriter writer = new FileWriter("filename1.json");
                 writer.write(user1.toString());
                 writer.close();
         }
