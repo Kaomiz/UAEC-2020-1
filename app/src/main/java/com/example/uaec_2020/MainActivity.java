@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void testImage (View view) {
-		/*Camera c = new Camera ();
+		Camera c = new Camera ();
 		Bitmap image = c.GetImage ();
-		ImageView imageView = new ImageView (null);
-		imageView.setImageBitmap (image);*/
-		UserShit user = new UserShit ();
+		//ImageView imageView = new ImageView (null);
+		//imageView.setImageBitmap (image);
+		/*UserShit user = new UserShit ();
 		JSONObject person = new JSONObject ();
 		try {
 			person = user.createJSONObject ("Sam", "Tait", "Yeety", "Yoink","yikes","T6A3C9","78069696969","42069","Death");
@@ -40,6 +40,6 @@ public class MainActivity extends AppCompatActivity {
 			user.storeJSONObject (person);
 		} catch (IOException e) {
 			e.printStackTrace ();
-		}
+		}*/
 	}
 }
