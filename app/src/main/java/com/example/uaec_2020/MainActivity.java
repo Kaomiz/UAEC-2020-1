@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 	static final int REQUEST_IMAGE_CAPTURE = 1;
 	ImageView view1;
 	Button create;
+	Bitmap image;
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate (savedInstanceState);
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
 	//Take the emergency picture
 	public void testImage (View view) {
 		dispatchTakePictureIntent ();
+		while (image == null) {
+			System.out.println ("RE");
+		}
 		call ();
 		//email ();
 	}
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onActivityResult (requestCode, resultCode, data);
 		if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 			Bundle extras = data.getExtras ();
-			Bitmap image = (Bitmap) extras.get ("data");
+			image = (Bitmap) extras.get ("data");
 			view1.setImageBitmap (image);
 			Pixel p = new Pixel ();
 			p.greyscale (image);
