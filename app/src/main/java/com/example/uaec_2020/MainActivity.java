@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.Bundle;
+import android.service.autofill.UserData;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,9 +22,11 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void testImage (View view) {
-		Camera c = new Camera ();
+		/*Camera c = new Camera ();
 		Bitmap image = c.GetImage ();
 		ImageView imageView = new ImageView (null);
-		imageView.setImageBitmap (image);
+		imageView.setImageBitmap (image);*/
+		UserShit user = new UserShit ();
+		JSONObject person =
 	}
 }
