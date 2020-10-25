@@ -6,8 +6,9 @@
 #include <limits.h>
 
 #include <fann.h>
-
 #include <jni.h>
+
+#include "recognize_face.h"
 
 #define NET_SAVE "nn.shizzle"
 
@@ -23,7 +24,7 @@ JNIEXPORT unsigned long int JNICALL setup_env(JNIEnv *env, jobject this_obj)
 	return addr_of_net;
 }
 
-JNIEXPORT int JNICALL recognize_face(unsigned long int env, char *img_data)
+JNIEXPORT int JNICALL recognize_face(JNIEnv*env, jobject this_obj, unsigned long int env, char *img_data)
 {
 	int i;
 	struct fann *net;
