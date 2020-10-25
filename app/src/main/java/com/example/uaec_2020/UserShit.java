@@ -44,13 +44,5 @@ public class UserShit {
                 writer.close();
         }
 
-        //read the json from file and make it into a new JSON object
-        public JSONObject readFromFile(File user) throws FileNotFoundException {
-
-                //set up a new reader and parse the JSON file to create a new JSON object
-                JsonParser parser = new JsonParser();
-                //JsonObject user1 = parser.parse(new FileReader("filename.json"));
-                return null;
-        }
 
 }
