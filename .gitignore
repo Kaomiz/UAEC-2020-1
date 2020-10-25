@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-:image_recognition/pics/
+image_recognition/pics/
