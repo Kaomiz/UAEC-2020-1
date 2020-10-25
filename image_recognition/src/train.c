@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <assert.h>
+#include <limits.h>
 
 #include "fann.h"
 
@@ -17,15 +18,16 @@ struct img_dat{
 	uint16_t img_hres;
 	uint16_t img_vres;
 	int bytes_per_image;
-	unsigned char **data;
-	unsigned char *data_handle;
+	float **data;
+	float *data_handle;
 };
 
 struct nn_params{
-	int num_input;
-	int num_output;
-	int num_layers;
-	int num_neurons_per_layer;
+	int num_in;
+	int num_out;
+	int num_hidden;
+	int num_lay;
+	int num_neu_p_lay;
 	float desired_error;
 	int max_epochs;
 	int epochs_between_reports;
@@ -38,6 +40,11 @@ int main()
 	// shitty custom format, load into training data arrays
 	FILE *input_images[4];
 	struct img_dat img_dat[4];
+	struct nn_params nnp;
+	struct fann *net;
+	float want_out[4];
+	int select;
+	int increment[4];
 
 	input_images[0] = fopen(SAM_FACE, "r");
 	input_images[1] = fopen(TAIT_FACE, "r");
@@ -83,11 +90,37 @@ int main()
 	for(i = 0; i < 4; ++i){
 		for(b = 0; b < img_dat[i].num_examples; ++b)
 			for(a = 0; a < img_dat[i].bytes_per_image; ++a)
-				img_dat[i].data[b][a] = fgetc(input_images[i]);
+				img_dat[i].data[b][a] = fgetc(input_images[i]) / UCHAR_MAX;
 	}
 
-	// data sdoulh be loaded now
-	
+	// data should be loaded now
+
+	// build network, this is the cool shit
+	nnp.num_in = img_dat[0].bytes_per_image;
+	nnp.num_out = 4;
+	nnp.num_hidden = 32;
+	nnp.num_lay = 3;
+	nnp.num_neu_p_lay = 16;
+	nnp.desired_error = 0.005;
+	nnp.max_epochs = 20000;
+	nnp.epochs_between_reports = 100;
+
+	// construct network
+	net = fann_create_standard(nnp.num_lay, nnp.num_in, nnp.num_hidden, nnp.num_out);
+
+	fann_set_activation_function_hidden(net, FANN_SIGMOID_SYMMETRIC);
+	fann_set_activation_function_output(net, FANN_SIGMOID_SYMMETRIC);
+
+
+	// initialize training trackers
+	// randomize this to choose which dataset to pull from
+	select = 0;
+	// this will keep track of which image to train on from a given dataset
+	for(i = 0; i < 4; ++i)
+		increment[i] = 0;
+
+	// prepare to load data into network
+	fann_train(net, img_dat[select].data[increment[i]], want_out);
 
 	return 0;
 }
