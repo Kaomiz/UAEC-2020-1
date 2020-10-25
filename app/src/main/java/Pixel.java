@@ -3,12 +3,7 @@ import android.graphics.Bitmap;
 
 public class Pixel {
     //converts raw bitmaps from the camera into greyscale byte arrays to be used by facial recognition
-Bitmap img;
-
-    public Pixel(Bitmap img) {
-        this.img = img;
-    }
-    public byte[] greyscale(){
+    public byte[] greyscale(Bitmap img){
         byte[] greyscale = new byte[img.getWidth()*img.getHeight()];
         //looping through all pixels
         for (int x = 0; x < img.getWidth(); x++) {
