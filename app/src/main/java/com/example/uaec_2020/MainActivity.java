@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
 	private void call () {
 		Intent callIntent = new Intent (Intent.ACTION_CALL);
 		callIntent.setData (Uri.parse("tel:7806688580"));
-		if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+		/*if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 			return;
-		}
+		}*/
 		startActivity(callIntent);
 	}
 
