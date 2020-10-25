@@ -1,11 +1,11 @@
 package com.example.uaec_2020;
-
 import android.graphics.Bitmap;
 
 
 public class Pixel {
     //converts raw bitmaps from the camera into greyscale byte arrays to be used by facial recognition
     public byte[] greyscale(Bitmap in){
+        //scales picture to the size use by image recognition algorithm
         Bitmap img = Bitmap.createScaledBitmap(in,256,256,true);
         byte[] greyscale = new byte[img.getWidth()*img.getHeight()];
         //looping through all pixels
