@@ -22,10 +22,12 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
 	static final int REQUEST_IMAGE_CAPTURE = 1;
+	ImageView view1;
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate (savedInstanceState);
 		setContentView (R.layout.activity_main);
+		view1 = findViewById (R.id.imageView);
 	}
 
 	public void testImage (View view) {
@@ -62,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
 		if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 			Bundle extras = data.getExtras ();
 			Bitmap image = (Bitmap) extras.get ("data");
-			ImageView imageView = new ImageView (null);
-			imageView.setImageBitmap (image);
+			view1.setImageBitmap (image);
 		}
 	}
 }
