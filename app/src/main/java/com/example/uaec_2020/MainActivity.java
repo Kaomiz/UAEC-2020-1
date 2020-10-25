@@ -24,6 +24,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+
 public class MainActivity extends AppCompatActivity {
 
 	static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate (savedInstanceState);
 		setContentView (R.layout.activity_main);
+		RequestPerms ();
 		view1 = findViewById (R.id.imageView);
 		create = findViewById (R.id.button2);
 		create.setOnClickListener (new View.OnClickListener () {
@@ -61,13 +65,20 @@ public class MainActivity extends AppCompatActivity {
 		startActivity(callIntent);
 	}
 
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+		//Forward results to EasyPermissions
+		EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+	}
+	@AfterPermissionGranted (2)
 	public void RequestPerms () {
 		String[] perms = {Manifest.permission.CALL_PHONE};
-		//if () {
-
-		//} else {
-
-		//}
+		if (EasyPermissions.hasPermissions(this, perms)) {
+		}
+		else {
+			EasyPermissions.requestPermissions(this, "Please grant the phone permission", 2, perms);
+		}
 	}
 
 	//Run the intent for picture
