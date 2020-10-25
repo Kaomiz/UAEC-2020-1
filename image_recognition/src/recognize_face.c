@@ -11,7 +11,8 @@
 
 #define NET_SAVE "nn.shizzle"
 
-JNIEXPORT unsigned long int JNICALL setup_env(){
+JNIEXPORT unsigned long int JNICALL setup_env(JNIEnv *env, jobject this_obj)
+{
 	// call once to create an instance of the neural network in memory
 	struct fann *net;
 	int addr_of_net;
@@ -22,7 +23,7 @@ JNIEXPORT unsigned long int JNICALL setup_env(){
 	return addr_of_net;
 }
 
-int recognize_face(unsigned long int env, char *img_data)
+JNIEXPORT int JNICALL recognize_face(unsigned long int env, char *img_data)
 {
 	int i;
 	struct fann *net;
