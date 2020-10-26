@@ -1,0 +1,2 @@
+/home/sam/to_move/android-ndk-r21d/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ar qc libfixedfann.a  CMakeFiles/fixedfann_static.dir/fixedfann.c.o
+/home/sam/to_move/android-ndk-r21d/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ranlib libfixedfann.a

@@ -1,0 +1,2 @@
+/home/sam/to_move/android-ndk-r21d/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ar qc libfann.a  CMakeFiles/fann_static.dir/floatfann.c.o
+/home/sam/to_move/android-ndk-r21d/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ranlib libfann.a

@@ -1,9 +1,11 @@
 package com.example.uaec_2020;
 
+import static java.lang.System.loadLibrary;
+
 public class recognize_face
 {
     static {
-        System.loadLibrary("recognize_face.so");
+        loadLibrary("recognize_face.so");
     }
     public native long alloc_nn();
     public native long run_data(long nn_ptr, byte data[]);

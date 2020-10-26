@@ -36,11 +36,14 @@ public class MainActivity extends AppCompatActivity {
 	Bitmap image;
 	recognize_face face;
 	long alloc;
+	byte pixel_data[];
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate (savedInstanceState);
 		setContentView (R.layout.activity_main);
 		RequestPerms ();
+		face = new recognize_face();
+		alloc = face.alloc_nn();
 		view1 = findViewById (R.id.imageView);
 		create = findViewById (R.id.button2);
 		create.setOnClickListener (new View.OnClickListener () {
@@ -102,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
 			image = (Bitmap) extras.get ("data");
 			view1.setImageBitmap (image);
 			Pixel p = new Pixel ();
-			p.greyscale (image);
+			pixel_data = p.greyscale (image);
+			System.out.println(face.run_data(alloc, pixel_data));
 			call ();
 		}
 	}
